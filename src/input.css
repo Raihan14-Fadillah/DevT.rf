@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@tailwind base; 
+@tailwind components; 
+@tailwind utilities;
+
+/* Custom Colors */
+        .bg-dark-navy {
+            background-color: #1a202c;
+        }
+        .text-accent {
+            color: #90a4ae; /* Soft blue-gray accent */
+        }
+        .bg-accent-light {
+            background-color: #4a5568;
+        }
+        .bg-accent-dark {
+            background-color: #2d3748;
+        }
+
+        /* Custom CSS for Scroll Reveal Animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* CSS Kustom untuk Kontainer Foto di Hero Section (Strategi V2 untuk efek kepala keluar) - TIDAK DIUBAH */
+        
+        /* Kontainer Luar - HANYA untuk dimensi, tanpa overflow */
+        .hero-image-container-v2 {
+            position: relative;
+            width: 100%;
+            max-width: 20rem; /* w-80 */
+            height: 20rem; /* h-80 */
+        }
+        @media (min-width: 768px) {
+            .hero-image-container-v2 {
+                max-width: 24rem; /* md:w-96 */
+                height: 24rem; /* md:h-96 */
+            }
+        }
+
+        /* Backdrop Geometris */
+        .hero-backdrop-v2 {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            top: 15%; /* Geser ke bawah sedikit */
+            left: 0; /* Mulai dari kiri */
+            background-color: #2d3748; /* bg-accent-dark */
+            transform: skewY(-10deg); /* Bentuk miring estetis */
+            z-index: 10;
+            opacity: 0.8;
+            border-radius: 0.5rem;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Kontainer Foto yang Miring dan Memotong (Overflow Hidden) */
+        .hero-profile-image-v2 {
+            position: absolute;
+            width: 85%; /* Sama dengan backdrop */
+            height: 85%; /* Sama dengan backdrop */
+            top: 15%; /* Sama dengan backdrop */
+            right: 0; /* Posisikan ke kanan atas container luar */
+            z-index: 20; /* Di atas backdrop */
+            overflow: hidden; /* KUNCI: Memotong bagian bawah gambar */
+            transform: skewY(-10deg); /* Miring */
+            border-radius: 0.5rem;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Gambar Profil (Counter-Skew dan Posisikan Ulang) */
+        .hero-profile-image-v2 img {
+            position: absolute;
+            width: 100%;
+            height: 115%; /* Tambah tinggi untuk menampung gambar yang digeser ke atas */
+            object-fit: cover; /* Agar gambar tidak terdistorsi */
+            object-position: center bottom; 
+            
+            /* KUNCI: Counter-skew untuk meluruskan gambar */
+            transform: skewY(10deg); 
+            transform-origin: top left;
+            
+            /* KUNCI: Geser ke atas agar kepala keluar dari kontainer overflow */
+            top: -15%; 
+            left: 0;
+            transition: transform 0.5s ease;
+        }
+
+        /* Hover effect untuk kedua elemen */
+        .hero-image-container-v2:hover .hero-backdrop-v2,
+        .hero-image-container-v2:hover .hero-profile-image-v2 {
+            transform: skewY(-10deg) scale(1.05);
+        }
+
+        /* * START PERUBAHAN UKURAN GAMBAR ABOUT SECTION */
+        .about-image-wrapper {
+            /* DITINGKATKAN: 12rem -> 20rem */
+            width: 20rem; 
+            height: 20rem; 
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative; 
+            /* Dihapus: box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); */ 
+            transition: transform 0.5s ease; /* Transisi untuk hover wrapper */
+        }
+        .about-image-wrapper img {
+            object-fit: cover;
+            /* KUNCI: clip-path untuk membuat potongan miring */
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); 
+        }
+        .about-image-wrapper:hover {
+             /* Hover effect pada wrapper (tanpa rotate, karena ada clip-path) */
+            transform: scale(1.05); 
+        }
+        /* * END PERUBAHAN UKURAN GAMBAR ABOUT SECTION */
