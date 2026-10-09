@@ -317,6 +317,9 @@
   .h-48 {
     height: calc(var(--spacing) * 48);
   }
+  .h-80 {
+    height: calc(var(--spacing) * 80);
+  }
   .h-full {
     height: 100%;
   }
@@ -331,6 +334,9 @@
   }
   .w-20 {
     width: calc(var(--spacing) * 20);
+  }
+  .w-80 {
+    width: calc(var(--spacing) * 80);
   }
   .w-full {
     width: 100%;
@@ -940,6 +946,11 @@
       display: none;
     }
   }
+  .md\:h-96 {
+    @media (width >= 48rem) {
+      height: calc(var(--spacing) * 96);
+    }
+  }
   .md\:w-1\/2 {
     @media (width >= 48rem) {
       width: calc(1/2 * 100%);
@@ -953,6 +964,11 @@
   .md\:w-3\/5 {
     @media (width >= 48rem) {
       width: calc(3/5 * 100%);
+    }
+  }
+  .md\:w-96 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 96);
     }
   }
   .md\:grid-cols-2 {
@@ -1344,4 +1360,378 @@
       --tw-ease: initial;
     }
   }
+}
+
+/* ==========================================
+   DevT.rf — Glassmorphism & Abstract Line Art
+   Palette: Navy + Transparent Blue + Gold
+========================================== */
+
+:root {
+    --glass-gold: #D5BD8C;
+    --glass-blue: #6D9BCB;
+    --glass-border: rgba(213, 189, 140, 0.23);
+    --glass-white: rgba(255, 255, 255, 0.055);
+    --glass-navy: rgba(7, 22, 45, 0.72);
+}
+
+/* Base */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+    background-color: #07152C;
+}
+
+/* Transparent background artwork */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(42, 91, 145, 0.22),
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 85% 55%,
+            rgba(31, 76, 127, 0.19),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(213, 189, 140, 0.055),
+            transparent 35%
+        ),
+        repeating-linear-gradient(
+            135deg,
+            transparent 0px,
+            transparent 115px,
+            rgba(109, 155, 203, 0.045) 116px,
+            transparent 117px,
+            transparent 230px
+        );
+
+    opacity: 1;
+}
+
+/* Fine geometric lines across the page */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            145deg,
+            transparent 0 24%,
+            rgba(213, 189, 140, 0.17) 24.05%,
+            transparent 24.15% 100%
+        ),
+        linear-gradient(
+            325deg,
+            transparent 0 68%,
+            rgba(109, 155, 203, 0.14) 68.05%,
+            transparent 68.15% 100%
+        ),
+        radial-gradient(
+            circle at 12% 34%,
+            rgba(213, 189, 140, 0.75) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 88% 64%,
+            rgba(109, 155, 203, 0.8) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 75% 17%,
+            rgba(213, 189, 140, 0.6) 0 1px,
+            transparent 2px
+        );
+
+    opacity: 0.7;
+}
+
+/* Keep page content above background artwork */
+body > * {
+    position: relative;
+}
+
+/* Keep the existing navy and gold palette,
+   but make large surfaces translucent */
+.bg-dark-navy {
+    background-color: rgba(7, 21, 44, 0.74) !important;
+    background-image: linear-gradient(
+        135deg,
+        rgba(29, 62, 103, 0.10),
+        transparent 55%,
+        rgba(213, 189, 140, 0.025)
+    );
+}
+
+.bg-accent-dark {
+    background-color: rgba(15, 35, 65, 0.68) !important;
+    background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.035),
+        transparent 48%,
+        rgba(109, 155, 203, 0.045)
+    );
+}
+
+/* Glass effect on header */
+header {
+    background: rgba(8, 24, 48, 0.76) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Main sections */
+section {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Delicate divider lines */
+hr {
+    height: 1px;
+    border: 0;
+    margin: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(109, 155, 203, 0.22) 18%,
+        rgba(213, 189, 140, 0.65) 50%,
+        rgba(109, 155, 203, 0.22) 82%,
+        transparent
+    );
+}
+
+/* Glass cards */
+.bg-dark-navy.p-6,
+.bg-accent-dark.p-6,
+.bg-accent-dark.p-4 {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(109, 155, 203, 0.24);
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* Thin diagonal accents inside cards */
+.bg-dark-navy.p-6::before,
+.bg-accent-dark.p-6::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 125px;
+    height: 90px;
+    pointer-events: none;
+
+    background: linear-gradient(
+        135deg,
+        transparent 49.5%,
+        rgba(213, 189, 140, 0.12) 50%,
+        transparent 50.7%
+    );
+
+    opacity: 0.8;
+}
+
+/* Subtle glow on hover */
+.bg-dark-navy.p-6:hover,
+.bg-accent-dark.p-6:hover,
+.bg-accent-dark.p-4:hover {
+    border-color: rgba(213, 189, 140, 0.48);
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.22),
+        0 0 20px rgba(109, 155, 203, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+/* Section headings */
+section h2 {
+    text-shadow: 0 0 22px rgba(109, 155, 203, 0.12);
+}
+
+section h2.text-accent {
+    position: relative;
+}
+
+section h2.text-accent::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 1px;
+    margin: 13px auto 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--glass-gold),
+        transparent
+    );
+}
+
+/* Gold text */
+.text-accent {
+    color: var(--glass-gold);
+}
+
+/* Fine outlines on profile photos */
+.hero-image-container-v2,
+.about-image-wrapper {
+    position: relative;
+    isolation: isolate;
+}
+
+.hero-profile-image-v2 img,
+.about-image-wrapper img {
+    border: 1px solid rgba(213, 189, 140, 0.35);
+    box-shadow:
+        0 0 35px rgba(109, 155, 203, 0.12),
+        0 0 0 8px rgba(109, 155, 203, 0.035);
+}
+
+/* Contact form glass panel */
+form {
+    background: rgba(15, 35, 65, 0.62) !important;
+    border: 1px solid rgba(213, 189, 140, 0.24);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+form input,
+form textarea {
+    background-color: rgba(5, 19, 39, 0.68) !important;
+    border-color: rgba(109, 155, 203, 0.30) !important;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: var(--glass-gold) !important;
+    box-shadow: 0 0 0 3px rgba(213, 189, 140, 0.09);
+}
+
+/* Gold accent on buttons */
+button[type="submit"] {
+    background: linear-gradient(
+        135deg,
+        #D5BD8C,
+        #E7D5AD
+    );
+    box-shadow: 0 5px 18px rgba(213, 189, 140, 0.12);
+}
+
+button[type="submit"]:hover {
+    box-shadow: 0 6px 24px rgba(213, 189, 140, 0.23);
+}
+
+/* Social links */
+footer {
+    background: rgba(11, 28, 53, 0.82) !important;
+    border-top: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+footer a {
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+footer a:hover {
+    transform: translateY(-2px);
+}
+
+/* Scroll reveal compatibility */
+.scroll-reveal {
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s ease,
+        border-color 0.35s ease;
+}
+
+/* Better mobile readability */
+@media (max-width: 767px) {
+    body::before {
+        background:
+            radial-gradient(
+                ellipse at 10% 15%,
+                rgba(42, 91, 145, 0.18),
+                transparent 45%
+            ),
+            radial-gradient(
+                ellipse at 90% 70%,
+                rgba(213, 189, 140, 0.045),
+                transparent 40%
+            ),
+            repeating-linear-gradient(
+                135deg,
+                transparent 0px,
+                transparent 155px,
+                rgba(109, 155, 203, 0.035) 156px,
+                transparent 157px,
+                transparent 310px
+            );
+    }
+
+    .bg-dark-navy.p-6,
+    .bg-accent-dark.p-6,
+    .bg-accent-dark.p-4 {
+        border-radius: 13px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    section h2.text-accent::after {
+        width: 55px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
